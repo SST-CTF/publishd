@@ -33,6 +33,11 @@ print("Waiting for connection...");
 let clientReciever = { (_ client: TCPClient) throws in
     let data = try client.receiveAll();
     try client.close();
+    
+    if data.count < 1 {
+        return;
+    }
+    
     let command = commands[data[0]]!;
     command();
 }
