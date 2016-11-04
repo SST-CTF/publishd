@@ -27,6 +27,9 @@ let commands : [UInt8: ()->Void] = [
     0b00000001 : upload
 ];
 
+// Let the user know the program has started
+print("Waiting for connection...");
+
 let clientReciever = { (_ client: TCPClient) throws in
     let data = try client.receiveAll();
     try client.close();
