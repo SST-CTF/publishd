@@ -63,6 +63,8 @@ let clientReciever = { (_ client: TCPClient) in
         if let command = commands[data[0]] {
             data.remove(at: 0);
             try client.send(bytes: command(data));
+        } else {
+            try client.send(bytes: [0,4]);
         }
         try client.close();
     } catch {
