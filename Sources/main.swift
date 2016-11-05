@@ -13,7 +13,7 @@ import SwiftShell;
 
 // Define command functions
 let publish = {
-    let _ = run(bash: "cd /var/www/html && sudo git stash && sudo git stash drop && sudo git pull");
+    let _ = run("/usr/local/bin/website-update.sh");
 }
 
 let upload = {
