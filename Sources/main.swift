@@ -37,6 +37,8 @@ let clientReciever = { (_ client: TCPClient) in
         print("Attempting to close connection");
         try client.close();
         
+        print(data);
+        
         if data.count < 1 {
             return;
         }
