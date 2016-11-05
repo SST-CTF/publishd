@@ -30,19 +30,23 @@ let commands : [UInt8: ()->Void] = [
 // Let the user know the program has started
 print("Waiting for connection...");
 
-let clientReciever = { (_ client: TCPClient) throws in
-    print("Attempting to recieve data");
-    let data = try client.receiveAll();
-    print("Attempting to close connection");
-    try client.close();
-    
-    if data.count < 1 {
-        return;
+let clientReciever = { (_ client: TCPClient) in
+    do {
+        print("Attempting to recieve data");
+        let data = try client.receiveAll();
+        print("Attempting to close connection");
+        try client.close();
+        
+        if data.count < 1 {
+            return;
+        }
+        
+        print("Attempting to run command");
+        let command = commands[data[0]]!;
+        command();
+    } catch {
+        
     }
-
-    print("Attempting to run command");
-    let command = commands[data[0]]!;
-    command();
 }
 
 do {
