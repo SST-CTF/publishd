@@ -11,18 +11,34 @@ import Foundation;
 import Socks;
 import SwiftShell;
 
+typealias Byte=UInt8;
+// Define constants
+let AUTHORIZED_IDS = ["2003"];
+
 // Define command functions
-let publish = {
-    let _ = run("/usr/local/bin/website-update.sh");
+let publish = { (_ bytes: [Byte]) -> [Byte] in
+    let data = Data(bytes);
+    if let string = String(data: data, encoding: String.Encoding.ascii) {
+        let stringArray = string.characters.split(separator: " ").map(String.init);
+        for id in stringArray {
+            for authId in AUTHORIZED_IDS {
+                if id == authId {
+                    let _ = run("/usr/local/bin/website-update.sh");
+                    return [6,4];
+                }
+            }
+        }
+    }
+    return [21,4];
 }
 
-let upload = {
-    
+let upload = { (_ bytes: [Byte]) -> [Byte] in
+    return [0,4];
 }
 
 
 // Define array of commands
-let commands : [UInt8: ()->Void] = [
+let commands : [Byte: ([Byte])->[Byte]] = [
     0b00000000 : publish,
     0b00000001 : upload
 ];
@@ -33,9 +49,9 @@ print("Waiting for connection...");
 let clientReciever = { (_ client: TCPClient) in
     do {
         print("Attempting to recieve data");
-        let data = try client.receiveAll();
+        var data = try client.receiveAll();
         print("Attempting to close connection");
-        try client.close();
+
         
         print(data);
         
@@ -45,8 +61,10 @@ let clientReciever = { (_ client: TCPClient) in
         
         print("Attempting to run command");
         if let command = commands[data[0]] {
-            command();
+            data.remove(at: 0);
+            try client.send(bytes: command(data));
         }
+        try client.close();
     } catch {
         
     }
