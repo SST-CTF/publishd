@@ -2,7 +2,7 @@
 A publish daemon for the website, rewritten using networking.
 
 ## Operation codes (opcodes)
-### These are codes sent as the first byte which instruct the daemon what to do
+**These are codes sent as the first byte which instruct the daemon what to do**
 **0**: Instructs `publishd` to pull website from RELEASE branch
 
 ## Return signals
