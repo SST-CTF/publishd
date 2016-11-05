@@ -42,8 +42,9 @@ let clientReciever = { (_ client: TCPClient) in
         }
         
         print("Attempting to run command");
-        let command = commands[data[0]]!;
-        command();
+        if let command = commands[data[0]] {
+            command();
+        }
     } catch {
         
     }
