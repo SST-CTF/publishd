@@ -13,7 +13,7 @@ import SwiftShell;
 
 typealias Byte=UInt8;
 // Define constants
-let AUTHORIZED_IDS = ["2003"];
+let AUTHORIZED_IDS = ["0", "2003"];
 
 // Define command functions
 let publish = { (_ bytes: [Byte]) -> [Byte] in
