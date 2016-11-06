@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DCF7ECFA1DCEB38200937B17 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7ECF91DCEB38200937B17 /* functions.swift */; };
 		OBJ_101 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* main.swift */; };
 		OBJ_103 /* SocksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* SocksCore.framework */; };
 		OBJ_104 /* Socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* Socks.framework */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DCF7ECF91DCEB38200937B17 /* functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 		OBJ_10 /* SynchronousTCPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronousTCPServer.swift; sourceTree = "<group>"; };
 		OBJ_11 /* SynchronousUDPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronousUDPServer.swift; sourceTree = "<group>"; };
 		OBJ_12 /* TCPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPClient.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_41 /* main.swift */,
+				DCF7ECF91DCEB38200937B17 /* functions.swift */,
 			);
 			name = "publisher-daemon";
 			path = Sources;
@@ -220,7 +223,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -228,7 +231,6 @@
 				OBJ_42 /* Tests */,
 				OBJ_43 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -341,7 +343,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_43 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -372,6 +374,7 @@
 				OBJ_55 /* SynchronousUDPServer.swift in Sources */,
 				OBJ_56 /* TCPClient.swift in Sources */,
 				OBJ_57 /* UDPClient.swift in Sources */,
+				DCF7ECFA1DCEB38200937B17 /* functions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,35 +12,31 @@ import Socks;
 import SwiftShell;
 
 typealias Byte=UInt8;
-// Define constants
-let AUTHORIZED_IDS = ["2003"];
 
 // Define command functions
 let publish = { (_ bytes: [Byte]) -> [Byte] in
     let data = Data(bytes);
-    if let string = String(data: data, encoding: String.Encoding.ascii) {
-        let stringArray = string.characters.split(separator: " ").map(String.init);
-        for id in stringArray {
-            for authId in AUTHORIZED_IDS {
-                if id == authId {
-                    let _ = run("/usr/local/bin/website-update.sh");
-                    return [6,4];
-                }
-            }
-        }
+    if authorized(bytes) {
+        run("/usr/local/bin/website-publish.sh");
+        return[6,4];
     }
     return [21,4];
 }
 
-let upload = { (_ bytes: [Byte]) -> [Byte] in
-    return [0,4];
+let test = { (_ bytes: [Byte]) -> [Byte] in
+    //return [0,4];
+    if authorized(bytes) {
+        run("/usr/local/bin/website-test.sh");
+        return[6,4];
+    }
+    return [21,4];
 }
 
 
 // Define array of commands
 let commands : [Byte: ([Byte])->[Byte]] = [
     0b00000000 : publish,
-    0b00000001 : upload
+    0b00000001 : test
 ];
 
 // Let the user know the program has started
